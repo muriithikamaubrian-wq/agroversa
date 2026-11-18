@@ -1,0 +1,2 @@
+// Reads a picture from the device and shrinks it to an avatar.
+const pic=f=>new Promise(r=>{if(!f)return r('');const fr=new FileReader();fr.onload=()=>{const im=new Image();im.onload=()=>{const c=document.createElement('canvas');c.width=c.height=96;const s=Math.min(im.width,im.height);c.getContext('2d').drawImage(im,(im.width-s)/2,(im.height-s)/2,s,s,0,0,96,96);r(c.toDataURL('image/jpeg',.8))};im.onerror=()=>r('');im.src=fr.result};fr.onerror=()=>r('');fr.readAsDataURL(f)});

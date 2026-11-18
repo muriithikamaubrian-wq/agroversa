@@ -1,0 +1,20 @@
+{
+  "name": "agroversa",
+  "private": true,
+  "version": "0.1.0",
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "start": "node scripts/build.mjs && npx serve dist",
+    "test": "node --experimental-strip-types --test packages/engine/tests/engine.test.ts",
+    "test:smoke": "node --test tests/integration/smoke.test.mjs",
+    "test:all": "npm run test && npm run build && npm run test:smoke"
+  },
+  "type": "module",
+  "devDependencies": {
+    "jsdom": "^26.0.0"
+  }
+}

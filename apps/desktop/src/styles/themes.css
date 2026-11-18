@@ -1,0 +1,4 @@
+/* Colour tokens for light and dark themes */
+
+:root{--bg:#eef1ea;--sf:#fff;--ink:#1f2a20;--mut:#5f6b60;--ln:#d7ddcf;--sd:#24402d;--sdi:#dbe6d4;--ac:#2d6a43;--wh:#a87a14;--bad:#b3392f;--cof:#5a3d2b;--bl:#2563a8;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media(prefers-color-scheme:dark){:root:not([data-theme=light]){--bg:#121a14;--sf:#1a251d;--ink:#e4ede0;--mut:#9aab9c;--ln:#2b3a2e;--sd:#0d140f;--sdi:#c3d4bf;--ac:#5fbf86;--wh:#e0b04a;--bad:#e5766c;--bl:#6aa8e8;color-scheme:dark}}

@@ -1,0 +1,3 @@
+# capabilities
+
+Tauri permissions.

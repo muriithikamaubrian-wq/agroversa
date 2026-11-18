@@ -1,0 +1,3 @@
+# groups
+
+Default group avatars.

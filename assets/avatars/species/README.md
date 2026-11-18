@@ -1,0 +1,3 @@
+# species
+
+Default species avatars.

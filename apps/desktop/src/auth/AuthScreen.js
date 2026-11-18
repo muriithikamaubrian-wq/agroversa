@@ -1,0 +1,22 @@
+// Create account, sign in, validation checklists and sign out.
+const eye=id=>`<button type="button" aria-label="Show or hide password" onclick="const e=document.getElementById('${id}');e.type=e.type=='password'?'text':'password'">Show</button>`;
+const fld=(id,l,t='text',x='')=>`<label for="${id}">${l}</label><div class="${t=='password'?'pw':''}"><input id="${id}" type="${t}" ${x}>${t=='password'?eye(id):''}</div><ul class="req" id="r_${id}" aria-live="polite"></ul><span class="err" id="e_${id}"></span>`;
+function authView(){const reg=AM=='reg';return `<div class="authwrap"><form class="card" id="af" novalidate>
+<div class="logo">${LOGO}AgroVersa</div><div class="mut" style="color:#6b5646">${reg?'Create your account. It works without internet.':'Sign in to your feed workspace.'}</div>
+${reg?fld('fn','Full name','text','autocomplete="name"'):''}${fld('un','Username','text','autocomplete="off" autocapitalize="none" spellcheck="false"')}${fld('pw','Password','password','autocomplete="new-password"')}
+${reg?fld('pc','Confirm password','password','autocomplete="new-password"')+`<label for="pp">Profile picture (optional)</label><input id="pp" type="file" accept="image/*,.png,.jpg,.jpeg,.webp,.gif,.heic">`:''}
+<span class="err" id="e_form" role="alert"></span><button class="pri" type="submit">${reg?'Create account':'Sign in'}</button>
+<button type="button" class="lnk" onclick="AM='${reg?'login':'reg'}';render()">${reg?'I already have an account':'Create an account'}</button>${reg?'':'<button type="button" class="lnk" onclick="fpModal()">Forgot password?</button>'+(fpAvail()?'<button type="button" class="lnk" onclick="fpLogin()">Sign in with fingerprint</button>':'')}</form></div>`}
+function reqCheck(){if(AM!='reg')return;const g=i=>(document.getElementById(i)||{}).value||'',fn=g('fn').trim(),un=g('un').trim(),pw=g('pw'),pc=g('pc');
+const L={fn:[[fn.length>=2,'Enter your full name (at least 2 characters)']],un:[[un.length>=3&&un.length<=20,'Use 3 to 20 characters'],[!un||/^[a-z0-9_.]+$/i.test(un),'Use only letters, numbers, dots and underscores'],[!users().some(u=>u.un.toLowerCase()==un.toLowerCase()),'That username is already taken']],pw:[[pw.length>=8,'Use at least 8 characters'],[/[a-zA-Z]/.test(pw),'Include at least one letter'],[/\d/.test(pw),'Include at least one number']],pc:[[!!pc&&pc==pw,'Repeat the same password']]};
+for(const k in L){const e=document.getElementById('r_'+k);if(e)e.innerHTML=L[k].filter(r=>!r[0]).map(r=>`<li>${r[1]}</li>`).join('')}}
+function setErr(o){document.querySelectorAll('.err').forEach(e=>e.textContent='');for(const k in o){const e=document.getElementById('e_'+k);if(e)e.textContent=o[k]}return Object.keys(o).length==0}
+async function submitAuth(ev){ev.preventDefault();const g=i=>(document.getElementById(i)||{}).value||'',un=g('un').trim(),pw=g('pw'),o={};
+if(!window.crypto||!crypto.subtle){return setErr({form:'Secure storage is not available in this browser.'})}
+if(AM=='reg'){const fn=g('fn').trim();if(!fn)o.fn='Enter your full name.';if(!un)o.un='Choose a username.';else if(!/^[a-z0-9_.]{3,20}$/i.test(un))o.un='Use 3–20 letters, numbers, dots or underscores.';else if(users().some(u=>u.un.toLowerCase()==un.toLowerCase()))o.un='That username is taken. Try another.';
+if(!pw)o.pw='Enter a password.';else if(pw.length<8)o.pw='Use at least 8 characters.';else if(!/[a-zA-Z]/.test(pw)||!/\d/.test(pw))o.pw='Include at least one letter and one number.';if(!g('pc'))o.pc='Confirm your password.';else if(pw!=g('pc'))o.pc='Passwords do not match.';
+if(!setErr(o)){const m={fn:'Full name',un:'Username',pw:'Password',pc:'Password confirmation'};document.getElementById('e_form').textContent='Please fix: '+Object.keys(o).map(k=>m[k]).join(', ')+'.';return}const h=await hashPw(pw),p=await pic(document.getElementById('pp').files[0]);const us=users();us.push({un,fn,salt:h.salt,hash:h.hash,pic:p});ls.set('av_users',JSON.stringify(us));const ck=users().find(x=>x.un==un),hv=ck&&await hashPw(pw,ck.salt);if(!ck||hv.hash!=ck.hash)return setErr({form:'The account could not be verified after saving. Check that browser storage is allowed, then try again.'});U=un;}
+else{if(!un)o.un='Enter your username.';if(!pw)o.pw='Enter your password.';if(!setErr(o))return;const u=users().find(u=>u.un.toLowerCase()==un.toLowerCase());
+const h=u&&await hashPw(pw,u.salt);if(!u||h.hash!=u.hash)return setErr({form:'Username or password is incorrect.'});U=u.un}
+ls.set('av_session',U);load();location.hash='dashboard';render()}
+function signOut(){ls.del('av_session');U=null;D=null;AM='login';render()}

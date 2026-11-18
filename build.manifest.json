@@ -1,0 +1,42 @@
+{
+  "css": [
+    "apps/desktop/src/styles/themes.css",
+    "apps/desktop/src/styles/global.css"
+  ],
+  "js": [
+    "packages/shared/src/util.js",
+    "packages/shared/src/constants.js",
+    "packages/database/src/storage.js",
+    "apps/desktop/src/app/state.js",
+    "apps/desktop/src/components/icons/icons.js",
+    "packages/engine/src/calculations/units.js",
+    "packages/engine/src/calculations/nutrientAnalysis.js",
+    "packages/engine/src/traceability/batchNumber.js",
+    "packages/engine/src/formulation/leastCostEngine.js",
+    "packages/engine/src/productivity/feedIntake.js",
+    "packages/engine/src/reports/chartData.js",
+    "apps/desktop/src/components/modals/modal.js",
+    "apps/desktop/src/components/modals/pickers.js",
+    "apps/desktop/src/components/common/ui.js",
+    "apps/desktop/src/components/forms/imagePicker.js",
+    "apps/desktop/src/components/forms/typedDate.js",
+    "apps/desktop/src/components/charts/charts.js",
+    "apps/desktop/src/components/calendar/calendar.js",
+    "packages/application/src/services/AuthService.js",
+    "packages/application/src/services/AnimalService.js",
+    "packages/application/src/services/NotificationService.js",
+    "apps/desktop/src/auth/AuthScreen.js",
+    "apps/desktop/src/auth/Recovery.js",
+    "apps/desktop/src/layouts/AppLayout.js",
+    "apps/desktop/src/app/routes.js",
+    "apps/desktop/src/screens/Dashboard/dashboard.js",
+    "apps/desktop/src/screens/Animals/animals.js",
+    "apps/desktop/src/screens/Inventory/inventory.js",
+    "apps/desktop/src/screens/Formulations/formulations.js",
+    "apps/desktop/src/screens/Productivity/productivity.js",
+    "apps/desktop/src/screens/Reports/reports.js",
+    "apps/desktop/src/screens/Notifications/notifications.js",
+    "apps/desktop/src/screens/Settings/settings.js",
+    "apps/desktop/src/app/main.js"
+  ]
+}

@@ -1,0 +1,1 @@
+export interface Group { id: string; name: string; species: string; stageId: string; animals: number; startDate: string; avatar?: string; outputName?: string; outputUnit?: string; dailyFeedKg?: number }
