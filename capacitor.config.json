@@ -1,0 +1,6 @@
+{
+  "appId": "com.agroversa.app",
+  "appName": "AgroVersa",
+  "webDir": "dist",
+  "server": { "androidScheme": "https" }
+}

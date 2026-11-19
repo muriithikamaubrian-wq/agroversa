@@ -9,6 +9,9 @@ Feed formulation, inventory, production and productivity for farms. Works offlin
 
 Accounts and records are stored in the browser on that device. Clearing site data removes them.
 
+## Install it as an app on a phone or PC
+See `docs/packaging.md`. In short: host `dist/` on https (GitHub Pages is set up in `.github/workflows/pages.yml`), then use **Install app** in the browser menu.
+
 ## How the code is organised
 The code lives in the folders below. `build.manifest.json` lists the files in the order they are joined into `dist/agroversa.html`.
 
