@@ -1,0 +1,6 @@
+// The optimizer for least cost and nutritional targeting. HiGHS replaces it later.
+function solve(n){const F=D.F,a=A(F.an),ing=D.ing.filter(i=>F.sel[i.id]);if(!a||!ing.length)return;
+const T=(x,k)=>ing.reduce((s,i,j)=>s+x[j]/100*i[k],0),vi=x=>N.reduce((s,[k])=>{if(!a.r[k])return s;const v=T(x,k),[lo,hi]=a.r[k];return s+Math.max(0,lo-v)/(lo||1)+Math.max(0,v-hi)/(hi||1)},0),dv=x=>N.reduce((s,[k])=>{if(!a.r[k])return s;const m=(a.r[k][0]+a.r[k][1])/2;return s+Math.abs(T(x,k)-m)/(m||1)},0),lm=x=>N.reduce((s,[k])=>{if(!a.r[k])return s;const m=(a.r[k][0]+a.r[k][1])/2;return s+Math.max(0,m-T(x,k))/(m||1)},0),ob=x=>(F.method=='cost'?T(x,'pr')+20*lm(x):dv(x))+100*vi(x);
+let x=ing.map(i=>Math.min(+F.x[i.id]||0,i.max)),s0=x.reduce((p,q)=>p+q,0);if(s0>100)x=x.map(v=>v*100/s0);let d0=100-x.reduce((p,q)=>p+q,0);x=x.map((v,j)=>{const q=Math.max(0,Math.min(d0,ing[j].max-v));d0-=q;return v+q});let o=ob(x);
+for(let t=0;t<n;t++){const i=Math.random()*x.length|0,j=Math.random()*x.length|0;if(i==j)continue;const d=Math.random()*(t<n/2?2:.3);if(x[j]<d||x[i]+d>ing[i].max)continue;const y=[...x];y[i]+=d;y[j]-=d;const v=ob(y);if(v<o){o=v;x=y}}
+D.ing.forEach(i=>{if(!F.sel[i.id])F.x[i.id]=0});ing.forEach((i,j)=>F.x[i.id]=Math.round(x[j]*100)/100)}

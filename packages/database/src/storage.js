@@ -1,0 +1,10 @@
+// Browser storage, users list, saving, loading and the starter data for a new account.
+const mem={},ls={get(k){try{return localStorage.getItem(k)}catch(e){return mem[k]??null}},set(k,v){try{localStorage.setItem(k,v)}catch(e){mem[k]=v}},del(k){try{localStorage.removeItem(k)}catch(e){delete mem[k]}}};
+const users=()=>{try{return JSON.parse(ls.get('av_users')||'[]')}catch(e){return[]}};
+const save=()=>ls.set('av_d_'+U,JSON.stringify(D));
+function seed(){const m=(n,cp,me,ca,p,lys,pr,max,stock)=>({id:uid(),n,cp,me,ca,p,lys,pr,max,stock}),a=(sp,st,cp,me,ca,p,lys)=>({id:uid(),sp,st,r:{cp,me,ca,p,lys}});
+const ing=[m('Maize',8.5,3350,.02,.28,.26,.3,70,2000),m('Soybean meal',46,2230,.3,.65,2.9,.55,40,800),m('Wheat bran',15.5,1300,.1,1.2,.6,.2,25,500),m('Fish meal',60,2800,5,2.9,4.5,1.4,10,200),m('Limestone',0,0,38,0,0,.08,8,300),m('Dicalcium phosphate',0,0,22,18,0,.6,3,150),m('Vegetable oil',0,8800,0,0,0,1.1,6,120)];
+const an=[a('Broiler','Starter',[22,26],[3000,3300],[.9,1.1],[.6,.9],[1.2,1.6]),a('Layer','Production',[16,19],[2650,2900],[3.5,4.2],[.4,.7],[.75,1]),a('Pig','Grower',[16,19],[3100,3400],[.6,.8],[.45,.7],[.85,1.1]),a('Dairy cow','Concentrate',[18,22],[2500,2900],[.7,1.2],[.45,.8],[.8,1.2])];
+an[0].dur={f:1,fu:'day',t:3,tu:'week'};an[1].dur={f:18,fu:'week',t:72,tu:'week'};an[2].dur={f:8,fu:'week',t:16,tu:'week'};an[3].dur={f:1,fu:'month',t:12,tu:'month'};const x=[52,30,5,5,1.5,1.5,5],F={an:an[0].id,sel:{},x:{},method:'cost',batch:1000};ing.forEach((i,n)=>{F.sel[i.id]=1;F.x[i.id]=x[n]});
+return{ing,an,runs:[],batches:[],perf:[],F}}
+function load(){try{D=JSON.parse(ls.get('av_d_'+U))}catch(e){D=null}if(!D){D=seed();save()}D.ic=D.ic||{};D.nut=D.nut||DN.map(([k,l,u])=>({k,l,u}));D.tiles=D.tiles||['runs','batches','value','low'];D.reps=D.reps||[];D.av=D.av||{};D.perf.forEach(p=>{if(!p.id)p.id=uid()});D.wt=D.wt||[];D.mt=D.mt||[];if(!D.qaT){D.tiles.unshift('qa');D.qaT=1}D.gr=D.gr||[];if(!D.F.method||D.F.method=='manual')D.F.method='cost';D.F.src=D.F.src||'';delete D.F.fs;N.length=0;D.nut.forEach(n=>N.push([n.k,n.l,n.u]))}

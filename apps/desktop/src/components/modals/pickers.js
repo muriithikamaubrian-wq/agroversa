@@ -1,0 +1,3 @@
+// Search-and-tap pick lists used by dashboard shortcuts and extra reports.
+const pick=(h,items,add)=>modal(`<h3>${h}</h3>${items.length?items.map(([k,l])=>`<button style="display:block;width:100%;text-align:left;margin-bottom:6px" onclick="${add}('${k}')">${l}</button>`).join(''):'<p class="mut">Everything is already added.</p>'}<div class="row" style="justify-content:flex-end"><button onclick="closeM()">Close</button></div>`);
+const tileModal=()=>pick('Add shortcut',Object.keys(KP).filter(k=>!D.tiles.includes(k)).map(k=>[k,KP[k][0]]),'addTile'),repModal=()=>pick('Add report',Object.keys(RX).filter(k=>!D.reps.includes(k)).map(k=>[k,RX[k][0]]),'addRep');

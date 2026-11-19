@@ -1,0 +1,2 @@
+// The notifications list screen.
+V.notifications=function(){const a=alerts();return `<h2>Notifications</h2><p class="sub">Things that need your attention.</p>`+(a.length?a.map(x=>`<div class="box row" style="justify-content:space-between"><span class="${x[0]}">${x[0]=='bad'?'✕':'!'} ${E(x[1])}</span><a class="chip" href="#${x[2]}">Open</a></div>`).join(''):'<div class="box ok">All clear. Nothing needs attention.</div>')};
