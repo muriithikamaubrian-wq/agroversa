@@ -1,4 +1,18 @@
-/* Colour tokens for light and dark themes */
+/* Colour tokens for three palettes and light/dark themes */
 
-:root{--bg:#eef1ea;--sf:#fff;--ink:#1f2a20;--mut:#5f6b60;--ln:#d7ddcf;--sd:#24402d;--sdi:#dbe6d4;--ac:#2d6a43;--wh:#a87a14;--bad:#b3392f;--cof:#5a3d2b;--bl:#2563a8;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
-@media(prefers-color-scheme:dark){:root:not([data-theme=light]){--bg:#121a14;--sf:#1a251d;--ink:#e4ede0;--mut:#9aab9c;--ln:#2b3a2e;--sd:#0d140f;--sdi:#c3d4bf;--ac:#5fbf86;--wh:#e0b04a;--bad:#e5766c;--bl:#6aa8e8;color-scheme:dark}}
+:root{box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+
+/* ══ FOREST ELEGANT — Refined Dark Green (default) ══ */
+:root,:root[data-palette="forest"]{--bg:#eef1ea;--sf:#fff;--ink:#1f2a20;--mut:#5f6b60;--ln:#d7ddcf;--sd:#24402d;--sdi:#dbe6d4;--ac:#2d6a43;--wh:#a87a14;--bad:#b3392f;--cof:#5a3d2b;--bl:#2563a8;--sdgb:rgba(36,64,45,.52)}
+@media(prefers-color-scheme:dark){:root:not([data-theme=light]),:root[data-palette="forest"]:not([data-theme=light]){--bg:#101A14;--sf:#192820;--ink:#E5EEE7;--mut:#8A9B8E;--ln:#285C43;--sd:#0D140F;--sdi:#61BD88;--ac:#61BD88;--wh:#e0b04a;--bad:#e5766c;--bl:#6aa8e8;--sdgb:rgba(13,20,15,.65);color-scheme:dark}}
+:root[data-theme=dark],:root[data-palette="forest"][data-theme=dark]{--bg:#101A14;--sf:#192820;--ink:#E5EEE7;--mut:#8A9B8E;--ln:#285C43;--sd:#0D140F;--sdi:#61BD88;--ac:#61BD88;--wh:#e0b04a;--bad:#e5766c;--bl:#6aa8e8;--sdgb:rgba(13,20,15,.65);color-scheme:dark}
+
+/* ══ NATURAL STUDIO — Warm Earth & Cream ══ */
+:root[data-palette="natural"]{--bg:#F5F2E8;--sf:#fff;--ink:#443C31;--mut:#66794E;--ln:#E7E1D1;--sd:#66794E;--sdi:#E7E1D1;--ac:#66794E;--wh:#B8902E;--bad:#A04539;--cof:#443C31;--bl:#4A6B8A;--sdgb:rgba(102,121,78,.52)}
+@media(prefers-color-scheme:dark){:root[data-palette="natural"]:not([data-theme=light]){--bg:#2A2520;--sf:#3A332B;--ink:#F0EBDF;--mut:#B1B986;--ln:#4A4238;--sd:#1F1B16;--sdi:#B1B986;--ac:#B1B986;--wh:#D4A84E;--bad:#D67060;--cof:#F0EBDF;--bl:#7BA0C0;--sdgb:rgba(31,27,22,.65);color-scheme:dark}}
+:root[data-palette="natural"][data-theme=dark]{--bg:#2A2520;--sf:#3A332B;--ink:#F0EBDF;--mut:#B1B986;--ln:#4A4238;--sd:#1F1B16;--sdi:#B1B986;--ac:#B1B986;--wh:#D4A84E;--bad:#D67060;--cof:#F0EBDF;--bl:#7BA0C0;--sdgb:rgba(31,27,22,.65);color-scheme:dark}
+
+/* ══ PRECISION TECH — Clean Modern Analytics ══ */
+:root[data-palette="precision"]{--bg:#F7F9FC;--sf:#fff;--ink:#172B40;--mut:#5A6B82;--ln:#E6EBF2;--sd:#172B40;--sdi:#B0C4DE;--ac:#1F8F91;--wh:#E8A93C;--bad:#D14545;--cof:#172B40;--bl:#2563A8;--sdgb:rgba(23,43,64,.52)}
+@media(prefers-color-scheme:dark){:root[data-palette="precision"]:not([data-theme=light]){--bg:#0F1822;--sf:#1A2530;--ink:#E6EBF2;--mut:#8A9BAE;--ln:#2A3540;--sd:#0A1018;--sdi:#68C6A0;--ac:#68C6A0;--wh:#F0BC60;--bad:#E57670;--cof:#E6EBF2;--bl:#6AA8E8;--sdgb:rgba(10,16,24,.65);color-scheme:dark}}
+:root[data-palette="precision"][data-theme=dark]{--bg:#0F1822;--sf:#1A2530;--ink:#E6EBF2;--mut:#8A9BAE;--ln:#2A3540;--sd:#0A1018;--sdi:#68C6A0;--ac:#68C6A0;--wh:#F0BC60;--bad:#E57670;--cof:#E6EBF2;--bl:#6AA8E8;--sdgb:rgba(10,16,24,.65);color-scheme:dark}
