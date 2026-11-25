@@ -1,18 +1,23 @@
-/* Colour tokens for three palettes and light/dark themes */
+/* AgroVersa colour tokens — 5-layer contrast system
+   Layers: background → sidebar → card → elevated → hover/selected
+   Text:  primary → secondary → muted → placeholder
+   Borders: card → elevated → hover → input
+   Each palette has light and dark variants.
+   Controlled via data-palette and data-theme on <html>. */
 
 :root{box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
 
-/* ══ FOREST ELEGANT — Refined Dark Green (default) ══ */
-:root,:root[data-palette="forest"]{--bg:#eef1ea;--sf:#fff;--ink:#1f2a20;--mut:#5f6b60;--ln:#d7ddcf;--sd:#24402d;--sdi:#dbe6d4;--ac:#2d6a43;--wh:#a87a14;--bad:#b3392f;--cof:#5a3d2b;--bl:#2563a8;--sdgb:rgba(36,64,45,.52)}
-@media(prefers-color-scheme:dark){:root:not([data-theme=light]),:root[data-palette="forest"]:not([data-theme=light]){--bg:#101A14;--sf:#192820;--ink:#E5EEE7;--mut:#8A9B8E;--ln:#285C43;--sd:#0D140F;--sdi:#61BD88;--ac:#61BD88;--wh:#e0b04a;--bad:#e5766c;--bl:#6aa8e8;--sdgb:rgba(13,20,15,.65);color-scheme:dark}}
-:root[data-theme=dark],:root[data-palette="forest"][data-theme=dark]{--bg:#101A14;--sf:#192820;--ink:#E5EEE7;--mut:#8A9B8E;--ln:#285C43;--sd:#0D140F;--sdi:#61BD88;--ac:#61BD88;--wh:#e0b04a;--bad:#e5766c;--bl:#6aa8e8;--sdgb:rgba(13,20,15,.65);color-scheme:dark}
+/* ══ FOREST ELEGANT 2.0 — Refined Dark Green (default) ══ */
+:root,:root[data-palette="forest"]{--bg:#eef1ea;--sf:#fff;--sf2:#f7f9f5;--hover:#e8efe5;--ink:#1f2a20;--ink2:#4a5c50;--mut:#7a8b7e;--ph:#9aab9c;--ln:#d7ddcf;--bd:#d7ddcf;--bd2:#c8d0bc;--bdh:#b8c4ac;--bdin:#c4cdb8;--inbg:#f7f9f5;--sd:#24402d;--sdi:#dbe6d4;--navon:#3D5745;--ac:#2d6a43;--wh:#a87a14;--bad:#b3392f;--cof:#5a3d2b;--bl:#2563a8;--sdgb:rgba(36,64,45,.55)}
+@media(prefers-color-scheme:dark){:root:not([data-theme=light]),:root[data-palette="forest"]:not([data-theme=light]){--bg:#101713;--sf:#202E25;--sf2:#29392E;--hover:#3D5745;--ink:#F1F5F2;--ink2:#C6D2C9;--mut:#93A79A;--ph:#93A79A;--ln:#2A3A30;--bd:#34463A;--bd2:#405746;--bdh:#42594A;--bdin:#3B4C40;--inbg:#18231C;--sd:#18231C;--sdi:#C6D2C9;--navon:#3D5745;--ac:#72C493;--wh:#E3B65A;--bad:#E77878;--cof:#5a3d2b;--bl:#6aa8e8;--sdgb:rgba(24,35,28,.78);color-scheme:dark}}
+:root[data-theme=dark],:root[data-palette="forest"][data-theme=dark]{--bg:#101713;--sf:#202E25;--sf2:#29392E;--hover:#3D5745;--ink:#F1F5F2;--ink2:#C6D2C9;--mut:#93A79A;--ph:#93A79A;--ln:#2A3A30;--bd:#34463A;--bd2:#405746;--bdh:#42594A;--bdin:#3B4C40;--inbg:#18231C;--sd:#18231C;--sdi:#C6D2C9;--navon:#3D5745;--ac:#72C493;--wh:#E3B65A;--bad:#E77878;--cof:#5a3d2b;--bl:#6aa8e8;--sdgb:rgba(24,35,28,.78);color-scheme:dark}
 
 /* ══ NATURAL STUDIO — Warm Earth & Cream ══ */
-:root[data-palette="natural"]{--bg:#F5F2E8;--sf:#fff;--ink:#443C31;--mut:#66794E;--ln:#E7E1D1;--sd:#66794E;--sdi:#E7E1D1;--ac:#66794E;--wh:#B8902E;--bad:#A04539;--cof:#443C31;--bl:#4A6B8A;--sdgb:rgba(102,121,78,.52)}
-@media(prefers-color-scheme:dark){:root[data-palette="natural"]:not([data-theme=light]){--bg:#2A2520;--sf:#3A332B;--ink:#F0EBDF;--mut:#B1B986;--ln:#4A4238;--sd:#1F1B16;--sdi:#B1B986;--ac:#B1B986;--wh:#D4A84E;--bad:#D67060;--cof:#F0EBDF;--bl:#7BA0C0;--sdgb:rgba(31,27,22,.65);color-scheme:dark}}
-:root[data-palette="natural"][data-theme=dark]{--bg:#2A2520;--sf:#3A332B;--ink:#F0EBDF;--mut:#B1B986;--ln:#4A4238;--sd:#1F1B16;--sdi:#B1B986;--ac:#B1B986;--wh:#D4A84E;--bad:#D67060;--cof:#F0EBDF;--bl:#7BA0C0;--sdgb:rgba(31,27,22,.65);color-scheme:dark}
+:root[data-palette="natural"]{--bg:#F5F2E8;--sf:#fff;--sf2:#FAF8F2;--hover:#EDF0E5;--ink:#443C31;--ink2:#6B5D4E;--mut:#8A7F6E;--ph:#8A7F6E;--ln:#E7E1D1;--bd:#E7E1D1;--bd2:#D8D0BC;--bdh:#CCC2A8;--bdin:#D4CCB8;--inbg:#FAF8F2;--sd:#66794E;--sdi:#E7E1D1;--navon:#7A8C5E;--ac:#66794E;--wh:#B8902E;--bad:#A04539;--cof:#5a3d2b;--bl:#4A6B8A;--sdgb:rgba(102,121,78,.58)}
+@media(prefers-color-scheme:dark){:root[data-palette="natural"]:not([data-theme=light]){--bg:#1E1A15;--sf:#332D24;--sf2:#3D362B;--hover:#4D4536;--ink:#F0EBDF;--ink2:#C9C0AE;--mut:#968B78;--ph:#968B78;--ln:#3A332B;--bd:#423A2E;--bd2:#4E4536;--bdh:#5A5040;--bdin:#484030;--inbg:#2A241D;--sd:#2A241D;--sdi:#C9C0AE;--navon:#4D4536;--ac:#B1B986;--wh:#D4A84E;--bad:#D67060;--cof:#5a3d2b;--bl:#7BA0C0;--sdgb:rgba(42,36,29,.78);color-scheme:dark}}
+:root[data-palette="natural"][data-theme=dark]{--bg:#1E1A15;--sf:#332D24;--sf2:#3D362B;--hover:#4D4536;--ink:#F0EBDF;--ink2:#C9C0AE;--mut:#968B78;--ph:#968B78;--ln:#3A332B;--bd:#423A2E;--bd2:#4E4536;--bdh:#5A5040;--bdin:#484030;--inbg:#2A241D;--sd:#2A241D;--sdi:#C9C0AE;--navon:#4D4536;--ac:#B1B986;--wh:#D4A84E;--bad:#D67060;--cof:#5a3d2b;--bl:#7BA0C0;--sdgb:rgba(42,36,29,.78);color-scheme:dark}
 
 /* ══ PRECISION TECH — Clean Modern Analytics ══ */
-:root[data-palette="precision"]{--bg:#F7F9FC;--sf:#fff;--ink:#172B40;--mut:#5A6B82;--ln:#E6EBF2;--sd:#172B40;--sdi:#B0C4DE;--ac:#1F8F91;--wh:#E8A93C;--bad:#D14545;--cof:#172B40;--bl:#2563A8;--sdgb:rgba(23,43,64,.52)}
-@media(prefers-color-scheme:dark){:root[data-palette="precision"]:not([data-theme=light]){--bg:#0F1822;--sf:#1A2530;--ink:#E6EBF2;--mut:#8A9BAE;--ln:#2A3540;--sd:#0A1018;--sdi:#68C6A0;--ac:#68C6A0;--wh:#F0BC60;--bad:#E57670;--cof:#E6EBF2;--bl:#6AA8E8;--sdgb:rgba(10,16,24,.65);color-scheme:dark}}
-:root[data-palette="precision"][data-theme=dark]{--bg:#0F1822;--sf:#1A2530;--ink:#E6EBF2;--mut:#8A9BAE;--ln:#2A3540;--sd:#0A1018;--sdi:#68C6A0;--ac:#68C6A0;--wh:#F0BC60;--bad:#E57670;--cof:#E6EBF2;--bl:#6AA8E8;--sdgb:rgba(10,16,24,.65);color-scheme:dark}
+:root[data-palette="precision"]{--bg:#F7F9FC;--sf:#fff;--sf2:#F0F4F8;--hover:#E6EEF5;--ink:#172B40;--ink2:#3D5068;--mut:#6B7B92;--ph:#7A8BA0;--ln:#E6EBF2;--bd:#E6EBF2;--bd2:#D1DAE6;--bdh:#B8C5D6;--bdin:#CDD7E4;--inbg:#F0F4F8;--sd:#172B40;--sdi:#B0C4DE;--navon:#2E4A6B;--ac:#1F8F91;--wh:#E8A93C;--bad:#D14545;--cof:#5a3d2b;--bl:#2563A8;--sdgb:rgba(23,43,64,.58)}
+@media(prefers-color-scheme:dark){:root[data-palette="precision"]:not([data-theme=light]){--bg:#0F1822;--sf:#1A2530;--sf2:#243140;--hover:#2E4055;--ink:#E6EBF2;--ink2:#B0C0D0;--mut:#7A8BA0;--ph:#7A8BA0;--ln:#232D38;--bd:#2A3540;--bd2:#364554;--bdh:#3E4F60;--bdin:#33414E;--inbg:#0F1822;--sd:#0A1018;--sdi:#B0C0D0;--navon:#2E4055;--ac:#68C6A0;--wh:#F0BC60;--bad:#E57670;--cof:#5a3d2b;--bl:#6AA8E8;--sdgb:rgba(10,16,24,.78);color-scheme:dark}}
+:root[data-palette="precision"][data-theme=dark]{--bg:#0F1822;--sf:#1A2530;--sf2:#243140;--hover:#2E4055;--ink:#E6EBF2;--ink2:#B0C0D0;--mut:#7A8BA0;--ph:#7A8BA0;--ln:#232D38;--bd:#2A3540;--bd2:#364554;--bdh:#3E4F60;--bdin:#33414E;--inbg:#0F1822;--sd:#0A1018;--sdi:#B0C0D0;--navon:#2E4055;--ac:#68C6A0;--wh:#F0BC60;--bad:#E57670;--cof:#5a3d2b;--bl:#6AA8E8;--sdgb:rgba(10,16,24,.78);color-scheme:dark}
