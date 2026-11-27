@@ -20,6 +20,7 @@
     "apps/desktop/src/components/common/ui.js",
     "apps/desktop/src/components/forms/imagePicker.js",
     "apps/desktop/src/components/forms/typedDate.js",
+    "apps/desktop/src/components/forms/excel.js",
     "apps/desktop/src/components/charts/charts.js",
     "apps/desktop/src/components/calendar/calendar.js",
     "packages/application/src/services/AuthService.js",
