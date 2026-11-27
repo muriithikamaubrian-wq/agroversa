@@ -1,0 +1,11 @@
+// Fingerprint/inactivity lock — locks the app after 10 seconds of inactivity
+// when fingerprint sign-in is enabled. Password is the fallback.
+let LOCK_TIMER=null,LOCKED=false;
+const LOCK_DELAY=10000; // 10 seconds
+function initLock(){const fp=users().find(u=>u.un==U)||{};if(!fp.fp){if(LOCK_TIMER)clearTimeout(LOCK_TIMER),LOCK_TIMER=null;return}if(!LOCK_TIMER){LOCK_TIMER=setTimeout(checkLock,LOCK_DELAY);['click','keydown','touchstart','mousemove'].forEach(e=>addEventListener(e,resetLock,{passive:true}))}}
+function resetLock(){if(LOCK_TIMER)clearTimeout(LOCK_TIMER);const fp=users().find(u=>u.un==U)||{};if(fp.fp&&!LOCKED)LOCK_TIMER=setTimeout(checkLock,LOCK_DELAY)}
+function checkLock(){const fp=users().find(u=>u.un==U)||{};if(!fp.fp||LOCKED)return;LOCKED=true;showLock()}
+function showLock(){const r=$('#root');if(!r)return;const ov=document.createElement('div');ov.id='lockOv';ov.style.cssText='position:fixed;inset:0;background:var(--bg);z-index:999;display:grid;place-items:center;padding:20px';ov.innerHTML=`<div style="text-align:center;max-width:360px"><div style="font-size:48px;margin-bottom:12px">🔒</div><h2>AgroVersa is locked</h2><p class="mut" style="margin:4px 0 20px">Tap unlock or enter your password.</p>${fpAvail()?'<button class="pri" style="width:100%;margin-bottom:10px" onclick="unlockFp()">Unlock with fingerprint</button>':''}<input id="lockPw" type="password" placeholder="Password" style="width:100%;margin-bottom:10px" onkeydown="if(event.key==\'Enter\')unlockPw()"><button class="pri" style="width:100%" onclick="unlockPw()">Unlock</button><div id="lockErr" class="bad" style="margin-top:8px"></div></div>`;document.body.appendChild(ov)}
+function unlockFp(){fpLogin().then(ok=>{if(ok)unlockOk();else{const e=document.getElementById('lockErr');if(e)e.textContent='Fingerprint failed. Try your password.'}})}
+async function unlockPw(){const pw=document.getElementById('lockPw').value,u=users().find(x=>x.un==U);if(!u)return;const h=await hashPw(pw,u.salt);if(h.hash==u.hash)unlockOk();else{const e=document.getElementById('lockErr');if(e)e.textContent='Incorrect password.'}}
+function unlockOk(){LOCKED=false;const ov=document.getElementById('lockOv');if(ov)ov.remove();resetLock()}
